@@ -1,12 +1,9 @@
 FROM mono
 
-LABEL name=neosvr-headless maintainer="panther.ru@gmail.com"
-
 ENV	STEAMAPPID=740250 \
 	STEAMAPP=neosvr \
 	STEAMCMDURL="https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" \
 	STEAMCMDDIR=/opt/steamcmd \
-	STEAMBETA=__CHANGEME__ \
 	STEAMBETAPASSWORD=__CHANGEME__ \
 	STEAMLOGIN=__CHANGEME__ \
 	USER=1000 \

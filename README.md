@@ -1,28 +1,41 @@
 # neosvr-headless
-Docker image of a NeosVR headless server
+Docker image of a NeosVR headless server based on shadowpanther/neosvr-headless
 
-See NeosVR Discord for beta access key. Steam login is required to download the client. You'll have to disable SteamGuard, so probably create a separate Steam account for your headless server.
+## Requirements
+* Docker
+* Steam Account with SteamGuard disabled (You might want a separate Steam account for running the headless server)
 
-Sample docker-compose:
-```
-version: "3.3"
-services:
-  image:
-    image: shadowpanther/neosvr-headless:latest
-    container_name: neosvr-headless
-    tty: true
-    stdin_open: true
-    environment:
-      STEAMBETA: see-discord-for-headless
-      STEAMBETAPASSWORD: see-discord-for-headless
-      STEAMLOGIN: "your_steam_login your_steam_password"
-    volumes:
-      - "./Config:/Config:ro"
-      - "./Logs:/Logs"
-      - "/etc/localtime:/etc/localtime:ro"
-    restart: unless-stopped
+## Preparation
+1. Sign up for NeosVR Patron, level "Guntry" or higher for headless access
+2. Get Beta key from Discord
+3. Copy `.env.sample` to `.env` and add your Steam Credentials and Beta Password found in the last step
+4. Update `Config/Config.json` with the NeosVR config you would like to start with.
+
+## Build the image
+```bash
+# If you have Make installed, simply run
+make build
+
+# If you do not have Make installed, run:
+docker compose build
 ```
 
-Place your `Config.json` into `Config` folder. Logs would be stored in `Logs` folder.
+## Run NeosVR Headless
+```bash
+# If you have Make installed, simply run
+make up
+
+# If you do not have Make installed, run:
+docker compose up -d
+```
+
+## Stop NeosVR
+```bash
+# If you have Make installed, simply run
+make down
+
+# If you do not have Make installed, run:
+docker compose down
+```
 
 You probably need to set `vm.max_map_count=262144` by doing `echo "vm.max_map_count=262144" >> /etc/sysctl.conf` lest you end up with frequent GC crashes.

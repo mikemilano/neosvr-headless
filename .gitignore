@@ -1,3 +1,5 @@
+.env
+.idea
 Config/Config.json
 Logs/*.log
 k8s/neosvr-config.yaml
