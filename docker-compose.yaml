@@ -1,0 +1,14 @@
+version: "3.3"
+services:
+  neosvr:
+    container_name: neosvr
+    build: .
+    tty: true
+    stdin_open: true
+    env_file:
+      - .env
+    volumes:
+      - "./Config:/Config:ro"
+      - "./Logs:/Logs"
+      - "/etc/localtime:/etc/localtime:ro"
+    restart: unless-stopped
